@@ -1,0 +1,18 @@
+﻿@* Cambia el modelo que se recibe, no es IEnumerable sino un modelo nuevo creado
+    llamado CityModel*@
+
+@model CRUD_MVC_PARTE_I.Models.CityModel
+@*@model IEnumerable<CRUD_MVC_PARTE_I.Models.Ciudad>*@
+<select class="form-control" id="CodCiudad" name="CodCiudad">
+
+    @foreach (var item in Model.ciudades)
+    {
+        //Comparacion  ternaria cuando coincida el id de la Ciudad con la lista y se seleccione
+        <option value="@item.Id" @(Model.CodigoCiudad == item.Id ? "selected" : "")>@item.Nombre</option>
+
+
+    }
+</select>
+
+
+

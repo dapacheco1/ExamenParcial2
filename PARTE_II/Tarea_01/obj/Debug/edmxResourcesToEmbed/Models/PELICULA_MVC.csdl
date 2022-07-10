@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PELICULAS_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PELICULAS_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoles" EntityType="PELICULAS_DBModel.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="PELICULAS_DBModel.AspNetUserClaims" />
+    <EntitySet Name="AspNetUsers" EntityType="PELICULAS_DBModel.AspNetUsers" />
+    <EntitySet Name="clientes" EntityType="PELICULAS_DBModel.clientes" />
+    <EntitySet Name="PedidosItems" EntityType="PELICULAS_DBModel.PedidosItems" />
+    <EntitySet Name="peliculas" EntityType="PELICULAS_DBModel.peliculas" />
+    <EntitySet Name="AspNetUserLogins" EntityType="PELICULAS_DBModel.AspNetUserLogins" />
+    <AssociationSet Name="FK_clientes_clientes1" Association="PELICULAS_DBModel.FK_clientes_clientes1">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserClaims_AspNetUsers" Association="PELICULAS_DBModel.FK_AspNetUserClaims_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserLogins_AspNetUsers" Association="PELICULAS_DBModel.FK_AspNetUserLogins_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_clientes" Association="PELICULAS_DBModel.FK_clientes_clientes">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidosItems_clientes" Association="PELICULAS_DBModel.FK_PedidosItems_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="PedidosItems" EntitySet="PedidosItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidosItems_peliculas" Association="PELICULAS_DBModel.FK_PedidosItems_peliculas">
+      <End Role="peliculas" EntitySet="peliculas" />
+      <End Role="PedidosItems" EntitySet="PedidosItems" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="PELICULAS_DBModel.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="clientes" Relationship="PELICULAS_DBModel.FK_clientes_clientes1" FromRole="AspNetRoles" ToRole="clientes" />
+    <NavigationProperty Name="AspNetUsers" Relationship="PELICULAS_DBModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="PELICULAS_DBModel.FK_AspNetUserClaims_AspNetUsers" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="PELICULAS_DBModel.FK_AspNetUserClaims_AspNetUsers" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="PELICULAS_DBModel.FK_AspNetUserLogins_AspNetUsers" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="clientes" Relationship="PELICULAS_DBModel.FK_clientes_clientes" FromRole="AspNetUsers" ToRole="clientes" />
+    <NavigationProperty Name="AspNetRoles" Relationship="PELICULAS_DBModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="rolId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetRoles" Relationship="PELICULAS_DBModel.FK_clientes_clientes1" FromRole="clientes" ToRole="AspNetRoles" />
+    <NavigationProperty Name="AspNetUsers" Relationship="PELICULAS_DBModel.FK_clientes_clientes" FromRole="clientes" ToRole="AspNetUsers" />
+    <NavigationProperty Name="PedidosItems" Relationship="PELICULAS_DBModel.FK_PedidosItems_clientes" FromRole="clientes" ToRole="PedidosItems" />
+  </EntityType>
+  <EntityType Name="PedidosItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClienteId" Type="Int32" />
+    <Property Name="PeliculaId" Type="Int32" />
+    <Property Name="total" Type="Double" />
+    <NavigationProperty Name="clientes" Relationship="PELICULAS_DBModel.FK_PedidosItems_clientes" FromRole="PedidosItems" ToRole="clientes" />
+    <NavigationProperty Name="peliculas" Relationship="PELICULAS_DBModel.FK_PedidosItems_peliculas" FromRole="PedidosItems" ToRole="peliculas" />
+  </EntityType>
+  <EntityType Name="peliculas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="duracion" Type="Int32" />
+    <Property Name="publicacion" Type="DateTime" Precision="3" />
+    <Property Name="pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="PedidosItems" Relationship="PELICULAS_DBModel.FK_PedidosItems_peliculas" FromRole="peliculas" ToRole="PedidosItems" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="PELICULAS_DBModel.FK_AspNetUserLogins_AspNetUsers" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <Association Name="FK_clientes_clientes1">
+    <End Type="PELICULAS_DBModel.AspNetRoles" Role="AspNetRoles" Multiplicity="1" />
+    <End Type="PELICULAS_DBModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="rolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserClaims_AspNetUsers">
+    <End Type="PELICULAS_DBModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="PELICULAS_DBModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserLogins_AspNetUsers">
+    <End Type="PELICULAS_DBModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="PELICULAS_DBModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_clientes">
+    <End Type="PELICULAS_DBModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="PELICULAS_DBModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidosItems_clientes">
+    <End Type="PELICULAS_DBModel.clientes" Role="clientes" Multiplicity="0..1" />
+    <End Type="PELICULAS_DBModel.PedidosItems" Role="PedidosItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PedidosItems">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidosItems_peliculas">
+    <End Type="PELICULAS_DBModel.peliculas" Role="peliculas" Multiplicity="0..1" />
+    <End Type="PELICULAS_DBModel.PedidosItems" Role="PedidosItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="peliculas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PedidosItems">
+        <PropertyRef Name="PeliculaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="PELICULAS_DBModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+    <End Type="PELICULAS_DBModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+  </Association>
+</Schema>

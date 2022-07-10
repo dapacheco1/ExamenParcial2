@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Tarea_01.Models.PedidosItemsCE>
+
+@{
+    ViewBag.Title = "Compras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Historial de compras</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Pelicula
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+     
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pelicula)
+        </td>
+        <td>
+           $ @Html.DisplayFor(modelItem => item.total) USD
+        </td>
+        
+        
+    </tr>
+}
+
+</table>

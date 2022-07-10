@@ -1,0 +1,27 @@
+﻿@model CRUD_MVC_PARTE_I.Models.Ciudad
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_bootstrap3.cshtml";
+}
+
+<h2>Detalles de la Ciudad</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
